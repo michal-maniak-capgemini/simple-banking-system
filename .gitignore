@@ -1,0 +1,8 @@
+# Ignore the .idea folder
+.idea/
+
+# Ignore the virtual environment
+.venv/
+
+# Ignore Visual Studio Code settings
+.vscode/
