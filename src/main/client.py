@@ -8,31 +8,31 @@ class Client:
             raise ValueError("Balance can't be negative")
         self.name = name
         self.balance = balance
-        self.transactions = []
+        self.__transactions = []
 
     def __repr__(self):
         return f"Client(name={self.name}, balance={self.balance})"
 
-    def deposit(self, cash: int):
-        if cash < 0:
+    def deposit(self, amount: int):
+        if amount < 0:
             raise ValueError("Can't deposit negative amount")
-        self.balance += cash
-        transaction = Transaction(self.name, TransactionType.DEPOSIT, cash, datetime.now())
-        self.transactions.append(transaction)
+        self.balance += amount
+        transaction = Transaction(self.name, TransactionType.DEPOSIT, amount, datetime.now())
+        self.__transactions.append(transaction)
 
-    def withdraw(self, cash: int):
-        if cash < 0:
+    def withdraw(self, amount: int):
+        if amount < 0:
             raise ValueError("Can't withdraw negative amount")
-        elif cash > self.balance:
+        elif amount > self.balance:
             raise ValueError("Can't withdraw more than balance")
-        self.balance -= cash
-        transaction = Transaction(self.name, TransactionType.WITHDRAWAL, cash, datetime.now())
-        self.transactions.append(transaction)
+        self.balance -= amount
+        transaction = Transaction(self.name, TransactionType.WITHDRAWAL, amount, datetime.now())
+        self.__transactions.append(transaction)
 
     def get_balance(self) -> int:
         return self.balance
 
     def print_statement(self):
-        print("Client transaction history: ")
-        for transaction in self.transactions:
+        print("Client transaction history:")
+        for transaction in self.__transactions:
             print(transaction)
