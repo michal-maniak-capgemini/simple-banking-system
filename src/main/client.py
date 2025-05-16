@@ -14,7 +14,12 @@ class Client:
         self.__transactions: List[Transaction] = []
 
     def __repr__(self):
-        return f"Client(client_id={repr(self.client_id)}, name={repr(self.name)}, balance={repr(self.__balance)}, transactions={repr(self.__transactions)})"
+        return f"Client(client_id={self.client_id}, name={self.name}, balance={self.__balance}, transactions={self.__transactions})"
+
+    def __eq__(self, other) -> bool:
+        if not isinstance(other, Client):
+            return False
+        return self.client_id == other.client_id
 
     def deposit(self, amount: float) -> None:
         self.__check_if_negative(amount)

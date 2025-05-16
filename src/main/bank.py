@@ -1,28 +1,31 @@
+from uuid import UUID
+
 from .client import Client
 
 class Bank:
     def __init__(self):
-        self.__client_id = 0
-        self.__clients = {}
+        self.__clients = []
 
-    def add_client(self, client: Client) -> int:
-        if client in self.__clients.values():
-            raise ValueError(f"Client: {client} already exists")
-        self.__client_id += 1
-        self.__clients[self.__client_id] = client
-        return self.__client_id
+    def __repr__(self):
+        return f'Bank(clients={repr(self.__clients)})'
 
-    def remove_client(self, client_id: int):
-        if client_id not in self.__clients:
-            raise ValueError(f"Client with ID: {client_id} not found")
-        del self.__clients[client_id]
+    def add_client(self, client: Client):
+        if client in self.__clients:
+            raise ValueError(f"Client with ID: {client.client_id} already exists")
+        self.__clients.append(client)
 
-    def get_client(self, client_id: int) -> Client:
-        if client_id not in self.__clients:
-            raise ValueError(f"Client with ID: {client_id} not found")
-        return self.__clients[client_id]
+    def remove_client(self, client: Client):
+        if client not in self.__clients:
+            raise ValueError(f"Client with ID: {client.client_id} not found")
+        self.__clients.remove(client)
+
+    def get_client(self, client_id: UUID) -> Client:
+        for client in self.__clients:
+            if client_id == client.client_id:
+                return client
+        raise ValueError(f"Client with ID: {client_id} not found")
 
     def print_all_balances(self):
         print("All client balances:")
-        for client in self.__clients.values():
-            print(client.get_balance())
+        for client in self.__clients:
+            print(f'{client.get_balance:.2f}')
