@@ -24,14 +24,14 @@ class Client:
     def deposit(self, amount: float) -> None:
         self.__check_if_negative(amount)
         self.__balance += amount
-        transaction = Transaction(self.name, TransactionType.DEPOSIT, amount, datetime.now())
+        transaction = Transaction(self.client_id, TransactionType.DEPOSIT, amount, datetime.now())
         self.__transactions.append(transaction)
 
     def withdraw(self, amount: float) -> None:
         self.__check_if_negative(amount)
         self.__check_if_more_than_balance(amount)
         self.__balance -= amount
-        transaction = Transaction(self.name, TransactionType.WITHDRAWAL, amount, datetime.now())
+        transaction = Transaction(self.client_id, TransactionType.WITHDRAWAL, amount, datetime.now())
         self.__transactions.append(transaction)
 
     @property

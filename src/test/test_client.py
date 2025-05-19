@@ -50,8 +50,8 @@ def test_print_statement(mocker, capsys, client):
 
     expected_output = (
     "Client transaction history:\n"
-    "Transaction: TransactionType.DEPOSIT of 500 on 2021-07-01 00:00:00 for John\n"
-    "Transaction: TransactionType.WITHDRAWAL of 200 on 2021-07-01 00:00:00 for John\n"
+    "Transaction: TransactionType.DEPOSIT of 500.00 on 2021-07-01 00:00:00\n"
+    "Transaction: TransactionType.WITHDRAWAL of 200.00 on 2021-07-01 00:00:00\n"
     )
     assert captured.out == expected_output
 
