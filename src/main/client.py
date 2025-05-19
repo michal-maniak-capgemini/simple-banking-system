@@ -5,12 +5,13 @@ from .transaction import Transaction
 from .transaction_type import TransactionType
 from datetime import datetime
 
+
 class Client:
     def __init__(self, name: str, balance: float = 0):
         self.__check_if_negative(balance)
         self.client_id: uuid = uuid.uuid4()
         self.name: str = name
-        self.__balance: float  = balance
+        self.__balance: float = balance
         self.__transactions: List[Transaction] = []
 
     def __repr__(self):
@@ -24,14 +25,18 @@ class Client:
     def deposit(self, amount: float) -> None:
         self.__check_if_negative(amount)
         self.__balance += amount
-        transaction = Transaction(self.client_id, TransactionType.DEPOSIT, amount, datetime.now())
+        transaction = Transaction(
+            self.client_id, TransactionType.DEPOSIT, amount, datetime.now()
+        )
         self.__transactions.append(transaction)
 
     def withdraw(self, amount: float) -> None:
         self.__check_if_negative(amount)
         self.__check_if_more_than_balance(amount)
         self.__balance -= amount
-        transaction = Transaction(self.client_id, TransactionType.WITHDRAWAL, amount, datetime.now())
+        transaction = Transaction(
+            self.client_id, TransactionType.WITHDRAWAL, amount, datetime.now()
+        )
         self.__transactions.append(transaction)
 
     @property

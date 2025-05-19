@@ -3,8 +3,15 @@ from uuid import UUID
 from .transaction_type import TransactionType
 from datetime import datetime
 
+
 class Transaction:
-    def __init__ (self, client_id: UUID, transaction_type: TransactionType, transaction_amount: float, transaction_date: datetime):
+    def __init__(
+        self,
+        client_id: UUID,
+        transaction_type: TransactionType,
+        transaction_amount: float,
+        transaction_date: datetime,
+    ):
         self.client_id = client_id
         self.transaction_type = transaction_type
         self.transaction_amount = transaction_amount
