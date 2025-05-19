@@ -12,10 +12,10 @@ class Transaction:
         transaction_amount: float,
         transaction_date: datetime,
     ):
-        self.client_id = client_id
-        self.transaction_type = transaction_type
-        self.transaction_amount = transaction_amount
-        self.transaction_date = transaction_date
+        self.client_id: UUID = client_id
+        self.transaction_type: TransactionType = transaction_type
+        self.transaction_amount: float = transaction_amount
+        self.transaction_date: datetime = transaction_date
 
     def __repr__(self) -> str:
         return f"Transaction(client_id={self.client_id}, transaction_type={self.transaction_type}, transaction_amount={self.transaction_amount}, transaction_date={self.transaction_date})"
